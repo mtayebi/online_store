@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 class Address(BaseModel):
     province = models.CharField(max_length=20, verbose_name=_("province"))
     city = models.CharField(max_length=20, verbose_name=_("city"))
-    alley = models.CharField(max_length=50,verbose_name=_("alley"))
+    alley = models.CharField(max_length=50, verbose_name=_("alley"))
     customer = models.ForeignKey('Customer', on_delete=models.CASCADE)
 
     class Meta:

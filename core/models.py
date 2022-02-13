@@ -7,10 +7,10 @@ from django.utils.translation import gettext as _
 class BaseManager(models.Manager):
 
     def get_queryset(self):
-        return super.get_queryset().filter(is_deleted=False)
+        return super().get_queryset().filter(is_deleted=False)
 
     def archiev(self):
-        return super.get_queryset()
+        return super().get_queryset()
 
 
 class BaseModel(models.Model):
