@@ -14,3 +14,8 @@ class Product(BaseModel):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name=_('category'))
 
 
+class Category(BaseModel):
+    parent_cat = models.ForeignKey('self', default=None, null=True, blank=True, verbose_name=_('parent_category'))
+    cat_title = models.CharField(max_length=30, verbose_name=_('category_title'))
+    about = models.TextField(max_length=500, verbose_name=_('about_category'))
+
