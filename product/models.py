@@ -19,3 +19,10 @@ class Category(BaseModel):
     cat_title = models.CharField(max_length=30, verbose_name=_('category_title'))
     about = models.TextField(max_length=500, verbose_name=_('about_category'))
 
+
+class Discount(BaseModel):
+    discount_title = models.CharField(max_length=10, verbose_name=_('discount_title'))
+    discount_amount = models.PositiveIntegerField(verbose_name=_('discount_amount'))
+    type = models.CharField(max_length=10, choices=[(_('price'), _('Price')), (_('percent'), _('Percent'))],
+                            verbose_name=_('discount_type'))
+    max_value = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('max_discount_value'))
