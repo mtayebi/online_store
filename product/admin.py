@@ -24,7 +24,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class DiscountAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        ('generic info', {"fields": ('discount_title', 'discount_amount', 'type')}),
+        ('others', {'fields': ('max_value',)}),
+    )
+    list_display = ['discount_title', 'discount_amount', 'type']
+    list_filter = ['discount_title', 'type']
 
 
 admin.site.register(Product, ProductAdmin)
