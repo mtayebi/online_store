@@ -7,6 +7,7 @@ from django.utils.translation import gettext as _
 class Product(BaseModel):
     pro_name = models.CharField(max_length=40, verbose_name=_('product_name'))
     brand = models.CharField(max_length=30, verbose_name=_('brand'))
+    image = models.ImageField(verbose_name=_('product_image'))
     properties = models.TextField(max_length=1000, verbose_name=_('properties'))
     stock = models.PositiveIntegerField(default=0, verbose_name=_('stock'))
     discount = models.ForeignKey('Discount', on_delete=models.SET_DEFAULT, default=0, null=True, blank=True,
@@ -19,7 +20,7 @@ class Product(BaseModel):
 
 
 class Category(BaseModel):
-    parent_cat = models.ForeignKey('self', default=None, null=True, blank=True, verbose_name=_('parent_category'))
+    parent_cat = models.ForeignKey('self', on_delete=models.CASCADE, default=None, null=True, blank=True, verbose_name=_('parent_category'))
     cat_title = models.CharField(max_length=30, verbose_name=_('category_title'))
     about = models.TextField(max_length=500, verbose_name=_('about_category'))
 
