@@ -22,6 +22,7 @@ class CustomerAdmin(admin.ModelAdmin):
         ('customer private info', {'fields': ('password',)}),
     )
     list_display = ['first_name', 'last_name', 'phone']
+    search_fields = ['first_name', 'last_name', 'phone']
 
 
 admin.site.register(Address, AddressAdmin)
