@@ -15,7 +15,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        ('generic info', {"fields": ('cat_title', 'parent_cat')}),
+        ('others', {'fields': ('about',)}),
+    )
+    list_display = ['cat_title', 'parent_cat']
+    list_filter = ['cat_title', 'parent_cat']
 
 
 class DiscountAdmin(admin.ModelAdmin):
