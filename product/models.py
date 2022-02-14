@@ -18,6 +18,9 @@ class Product(BaseModel):
         verbose_name, verbose_name_plural = _('product'), _('products')
         ordering = ['create_time']
 
+    def __str__(self):
+        return f'{self.brand}: {self.pro_name}'
+
 
 class Category(BaseModel):
     parent_cat = models.ForeignKey('self', on_delete=models.CASCADE, default=None, null=True, blank=True, verbose_name=_('parent_category'))
@@ -27,9 +30,12 @@ class Category(BaseModel):
     class Meta:
         verbose_name, verbose_name_plural = _('category'), _('categories')
 
+    def __str__(self):
+        return f'{self.cat_title}'
+
 
 class Discount(BaseModel):
-    discount_title = models.CharField(max_length=10, verbose_name=_('discount_title'))
+    discount_title = models.CharField(max_length=20, verbose_name=_('discount_title'))
     discount_amount = models.PositiveIntegerField(verbose_name=_('discount_amount'))
     type = models.CharField(max_length=10, choices=[(_('price'), _('Price')), (_('percent'), _('Percent'))],
                             verbose_name=_('discount_type'))
@@ -37,3 +43,6 @@ class Discount(BaseModel):
 
     class Meta:
         verbose_name, verbose_name_plural = _('discount'), _('discounts')
+
+    def __str__(self):
+        return f'{self.discount_title}'
