@@ -23,7 +23,6 @@ class ProductTest(TestCase):
         self.p4 = Product.objects.create(pro_name='adidas T-shirt', price=200000
                                      ,brand='adidas', stock=10, discount=self.d3, category=self.c2)
 
-
     def test_price_profit_product(self):
         self.assertEqual(self.p1.profit(), 100000)
         self.assertEqual(self.p2.profit(), 90000)

@@ -49,6 +49,7 @@ class Basket(BaseModel):
     def basket_cancel(self):
         if self.status != 'Paid':
             self.status = 'Canceled'
+            self.save()
         elif self.status == 'Paid':
             return Exception(_('you can not cancel a paid order'))
 
