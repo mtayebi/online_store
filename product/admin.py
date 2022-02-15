@@ -8,7 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('generic info'), {"fields": ('pro_name', 'brand', 'stock', 'image',
                                         'properties')}),
-        (_('others'), {'fields': ('discount', 'category')}),
+        (_('others'), {'fields': ('price', 'discount', 'category')}),
     )
     list_display = ['pro_name', 'category', 'brand', 'stock']
     list_filter = ['category', 'brand']

@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 # Create your models here.
 class Product(BaseModel):
     pro_name = models.CharField(max_length=40, verbose_name=_('product_name'))
+    price = models.PositiveIntegerField(verbose_name=_('price'))
     brand = models.CharField(max_length=30, verbose_name=_('brand'))
     image = models.ImageField(verbose_name=_('product_image'))
     properties = models.TextField(max_length=1000, verbose_name=_('properties'))
@@ -20,6 +21,13 @@ class Product(BaseModel):
 
     def __str__(self):
         return f'{self.brand}: {self.pro_name}'
+
+    def profit(self):
+        if self.discount.type == 'price':
+            return int(min(int(self.price), self.discount.discount_amount))
+        else:
+            temp = int((self.discount.discount_amount/100)*int(self.price))
+            return int(min(temp, self.discount.max_value)) if self.discount.max_value else temp
 
 
 class Category(BaseModel):
@@ -39,7 +47,7 @@ class Discount(BaseModel):
     discount_amount = models.PositiveIntegerField(verbose_name=_('discount_amount'))
     type = models.CharField(max_length=10, choices=[(_('price'), _('Price')), (_('percent'), _('Percent'))],
                             verbose_name=_('discount_type'))
-    max_value = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('max_discount_value'))
+    max_value = models.PositiveIntegerField(null=True, blank=True,verbose_name=_('max_discount_value'))
 
     class Meta:
         verbose_name, verbose_name_plural = _('discount'), _('discounts')
