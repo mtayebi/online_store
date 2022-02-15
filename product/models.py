@@ -11,7 +11,7 @@ class Product(BaseModel):
     image = models.ImageField(verbose_name=_('product_image'))
     properties = models.TextField(max_length=1000, verbose_name=_('properties'))
     stock = models.PositiveIntegerField(default=0, verbose_name=_('stock'))
-    discount = models.ForeignKey('Discount', on_delete=models.SET_DEFAULT, default=0, null=True, blank=True,
+    discount = models.ForeignKey('Discount', on_delete=models.SET_DEFAULT, default=None, null=True, blank=True,
                                  verbose_name=_('discount'))
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name=_('category'))
 
