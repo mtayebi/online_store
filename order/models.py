@@ -34,7 +34,8 @@ class DiscountCode(BaseModel):
 
 class Basket(BaseModel):
     basket_customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name=_('order_customer'))
-    basket_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE, verbose_name=_('basket_code'), default=None)
+    basket_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE, verbose_name=_('basket_code')
+                                    , default=None, null=True, blank=True)
     status = models.CharField(max_length=8, choices=statuses, default='Unpaid', verbose_name=_('basket_status'))
 
     class Meta:
@@ -56,23 +57,21 @@ class Basket(BaseModel):
     def total_no_discount(self):
         total_value = 0
         for item in OrderItem.objects.filter(basket=self):
-            total_value += item.order_product.price
-            return total_value
+            total_value += ((item.order_product.price) * (item.number))
+        return total_value
 
     @property
     def basket_total_value(self):
-        temp = self.total_no_discount()
+        temp = self.total_no_discount
         if self.basket_code:
-            for item in OrderItem.objects.get(basket=self):
+            for item in OrderItem.objects.filter(basket=self):
                 if item.order_product.discount:
-                    temp = temp-item.order_product.profit()
+                    temp = temp - (item.order_product.profit() * item.number)
 
-            temp = self.basket_code.profit_value(temp)
+            temp = temp - self.basket_code.profit_value(temp)
             return temp
         else:
-            for item in OrderItem.objects.get(basket=self):
+            for item in OrderItem.objects.filter(basket=self):
                 if item.order_product.discount:
-                    temp = temp-item.order_product.profit()
+                    temp = temp - (item.order_product.profit() * item.number)
             return temp
-
-
