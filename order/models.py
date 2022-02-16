@@ -31,6 +31,8 @@ class DiscountCode(BaseModel):
     def profit_value(self, price: int):
         return int(min(self.code_amount, price))
 
+    def __str__(self):
+        return f'{self.code_title}'
 
 class Basket(BaseModel):
     basket_customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name=_('order_customer'))
@@ -44,6 +46,7 @@ class Basket(BaseModel):
     @property
     def basket_paid(self):
         self.status = 'Paid'
+        self.save()
         return self
 
     @property
