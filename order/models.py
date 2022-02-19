@@ -18,7 +18,7 @@ class OrderItem(BaseModel):
     basket = models.ForeignKey('Basket', on_delete=models.CASCADE, verbose_name=_('order_basket'))
 
     class Meta:
-        verbose_name, verbose_name_plural = _('order_item'), _('order_items')
+        verbose_name, verbose_name_plural = _('order'), _('orders')
 
 
 class DiscountCode(BaseModel):
@@ -42,6 +42,9 @@ class Basket(BaseModel):
 
     class Meta:
         verbose_name, verbose_name_plural = _('basket'), _('baskets')
+
+    def __str__(self):
+        return f'belongs to {self.basket_customer}'
 
     @property
     def basket_paid(self):

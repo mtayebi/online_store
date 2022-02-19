@@ -9,9 +9,10 @@ class AddressAdmin(admin.ModelAdmin):
         ('generic info', {"fields": ('province', 'city', ('alley'))}),
         ('belongs to', {'fields': ('customer',)}),
     )
-    list_display = [_('address_owner'), 'province', 'city', 'alley']
+    list_display = ['address_owner', 'province', 'city', 'alley']
     list_filter = ['province', 'city', 'alley']
 
+    @admin.display(description=_('address_owner'))
     def address_owner(self, obj):
         return f'{obj.customer.first_name}-{obj.customer.last_name}'
 

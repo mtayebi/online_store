@@ -8,9 +8,10 @@ class OrderItemAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('order item info'), {"fields": ('number', 'order_product', 'basket',)}),
     )
-    list_display = ['number', 'order_product', 'basket', _('item_category')]
+    list_display = ['number', 'order_product', 'basket', 'item_category']
     list_display_links = ['number', 'order_product', 'basket']
 
+    @admin.display(description=_('item_category'))
     def item_category(self, obj):
         return obj.order_product.category
 
@@ -19,8 +20,9 @@ class DiscountCodeAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('discount code info'), {"fields": ('code_amount', 'code_title',)}),
     )
-    list_display = ['code_title', _('related_user')]
+    list_display = ['code_title', 'related_user']
 
+    @admin.display(description=_("related_user"))
     def related_user(self, obj):
         return Basket.objects.get(basket_code=obj).basket_customer
 
