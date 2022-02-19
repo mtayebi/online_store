@@ -11,3 +11,13 @@ class ListCustomerAPI(generics.ListCreateAPIView):
 class ViewCustomerAPI(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
+
+
+class ListAddressAPI(generics.ListCreateAPIView):
+    serializer_class = AddressSerializer
+    queryset = Address.objects.all()
+
+
+class ViewAddressAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AddressSerializer
+    queryset = Address.objects.all()
