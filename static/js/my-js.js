@@ -23,8 +23,9 @@
 orders = {}
 function AddOrder(product_id, amount){
     orders[product_id] = $("#"+amount).html()
-    document.cookie = "orders="+orders
-    console.log(document.cookie)
+    document.cookie = "orders="+JSON.stringify(orders)
+    $("#power").html(Object.keys(orders).length)
+    $("#power").attr("hidden",false);
 }
 
 function Decrement(amount_id){

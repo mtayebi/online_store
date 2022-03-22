@@ -40,13 +40,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">register</a>
+            <a class="nav-link" href="">register</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">products</a>
+            <a class="nav-link" href="">products</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link disabled" href="{% url 'purchase' %}">my basket<span id="power" style="position: relative; bottom: .65rem; font-size:100%; color: #ff0707" hidden="true">0</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link disabled" href="">contact us</a>
@@ -67,5 +70,6 @@
 {% block script %}
     <script src="/static/js/my-js.js"></script>
 {% endblock %}
+    <link rel="stylesheet" href="/static/css/mycss_home.css">
 </body>
 </html>
