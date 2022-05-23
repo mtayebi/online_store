@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .apis import ListCustomerAPI, ViewCustomerAPI, ViewAddressAPI, ListAddressAPI
-from .views import CustomerLogin
+from .views import CustomerLogin, CustomerSignup, CustomerLogout
 
 
 app_name = 'customer'
@@ -15,5 +15,7 @@ api = [
 urlpatterns = [
     path('api/', include(api), name='customer_api'),
     path('login/', CustomerLogin.as_view(), name='login'),
+    path('signup/', CustomerSignup.as_view(), name='signup'),
+    path('logout/', CustomerLogout.as_view(), name='logout'),
     # path('', profile.as_view(), name='profile'),
     ]
