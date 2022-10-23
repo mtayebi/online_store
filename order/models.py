@@ -84,5 +84,3 @@ class Basket(BaseModel):
                 if item.order_product.discount:
                     temp = temp - (item.order_product.profit() * item.number)
             return temp
-        
-        
