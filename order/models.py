@@ -34,6 +34,8 @@ class DiscountCode(BaseModel):
     def __str__(self):
         return f'{self.code_title}'
 
+    
+    
 class Basket(BaseModel):
     basket_customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name=_('order_customer'))
     basket_code = models.ForeignKey(DiscountCode, on_delete=models.CASCADE, verbose_name=_('basket_code')
