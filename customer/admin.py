@@ -19,11 +19,11 @@ class AddressAdmin(admin.ModelAdmin):
 
 class CustomerAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('customer info', {'fields': ('first_name', 'last_name', 'phone')}),
+        ('customer info', {'fields': ('first_name', 'last_name',)}),
         ('customer private info', {'fields': ('password',)}),
     )
-    list_display = ['first_name', 'last_name', 'phone']
-    search_fields = ['first_name', 'last_name', 'phone']
+    list_display = ['first_name', 'last_name']
+    search_fields = ['first_name', 'last_name']
 
 
 admin.site.register(Address, AddressAdmin)

@@ -25,3 +25,10 @@ footer, #footer{
 .social-links{
     margin: 10px;
 }
+#purchase_content{
+    text-align: center;
+    margin: 10% 10% 10% 10%;
+}
+.card{
+    margin: 10% 10% 10% 10%!important;
+}

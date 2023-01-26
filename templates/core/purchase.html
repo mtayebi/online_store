@@ -1,4 +1,59 @@
 {% extends 'core/base.html' %}
+{% block exter_head %}
+    <link rel="stylesheet" href="/static/css/mycss_home.css">
+{% endblock %}
+
+
 {% block content %}
-  {{ orders }}
+
+<!-- ******************* recipient cards part ****************** -->
+<section id="purchase_content">
+<div class='container'>
+<div class='row'>
+
+
+
+<div class="card bg-primary col-sm-11" style="width: 20rem;">
+
+
+
+  <div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>number</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item, number in orders.items %}
+      <tr>
+        <td>{{ item.pro_name }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ number }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+
+
+  </div>
+
+  <div class="card-footer">
+    <p class="card-text">{{ pro.price }} toman</p>
+  </div>
+
+  <div class="card-footer">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buyModal-{{ pro.id }}">buy</button>
+  </div>
+</div>
+
+
+</div>
+</div>
+</section>
+
+
 {% endblock %}
